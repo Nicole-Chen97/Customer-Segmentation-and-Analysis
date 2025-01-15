@@ -32,6 +32,7 @@ Recency: Number of days since customer's last purchase
 Complain: 1 if the customer complained in the last 2 years, 0 otherwise
 
 產品消費金額：
+
 MntWines: Amount spent on wine in last 2 years
 
 MntFruits: Amount spent on fruits in last 2 years
@@ -45,6 +46,7 @@ MntSweetProducts: Amount spent on sweets in last 2 years
 MntGoldProds: Amount spent on gold in last 2 years
 
 購物通路之次數：
+
 NumWebPurchases: Number of purchases made through the company’s website
 
 NumCatalogPurchases: Number of purchases made using a catalogue
@@ -54,12 +56,35 @@ NumStorePurchases: Number of purchases made directly in stores
 NumWebVisitsMonth: Number of visits to company’s website in the last month 
 
 
+## 方法
+1. **資料預處理：**
+   - **缺失值處理：** 檢查資料集中是否存在缺失值，並根據情況刪除。
+   - **Outlier處理：** 檢查資料集中是否存在Outlier，並根據情況刪除。
+   - **資料正規化：** 使用 Min-Max 正規化方法，將數值型特徵縮放至 [0,1] 區間，以確保不同特徵之間具有可比性。
+
+2. **相關性分析（Correlation Analysis）：**
+   - 計算各特徵之間的相關係數，識別變數之間的相關性以及可能存在多重共線性的特徵，為後續分析提供依據。
+
+3. **單因子變異數分析（One-Way ANOVA）：**
+   - 針對類別變數，評估其對總消費額的影響程度，判斷不同組別之間是否存在顯著差異。
+
+4. **K-Means 分群分析：**
+   - **選擇適當的群數（K）：** 使用肘部法（Elbow Method）或輪廓係數（Silhouette Score）等方法，確定最佳的群數。
+   - **模型訓練：** 基於選定的特徵，應用 K-Means 演算法對客戶進行分群，識別具有相似特徵的客戶群體。
+
+5. **群組特徵分析：**
+   - 對每個群組的平均特徵值進行分析，了解不同客戶群體的特徵與消費行為，為制定行銷策略提供依據。
+
+
+
 ## 結論：
 分別使用人工分群和Kmeans分群，並針對分群結果以觀察客戶基本特徵、消費篇好管道、資金分配比例 
 
-##### KMeans 分析結果：
+### **KMeans** 分析結果：
 #### **總體分析：**
-分為兩群，cluster_0 為887 人（佔比40.2%)，其總消費額為1,098,169 (佔比80%)
+分為兩群，
+
+cluster_0 為887 人（佔比40.2%)，其總消費額為1,098,169 (佔比80%)
 
 cluster_1 為1319人（佔比59.8%)，其總消費額為245,083 (佔比20%)
 
